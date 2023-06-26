@@ -20,7 +20,12 @@
           <form id="search-form" class="mb-3">
             <div class="row">
               <div class="col-9">
-                <input type="search" placeholder="Search a city.. 🔍" />
+                <input
+                  type="search"
+                  placeholder="Search a city.. 🔍"
+                  class="form-control"
+                  autocomplete="off"
+                />
               </div>
               <div class="col-3">
                 <input
@@ -32,13 +37,42 @@
             </div>
           </form>
           <div class="overview">
-            <h1>Manila, Philippines</h1>
+            <h1 id="city">Manila, Philippines</h1>
+            <ul>
+              <li>Last update: <span id="date">Date Time</span></li>
+              <li id="description">Description</li>
+            </ul>
           </div>
-          <ul>
-            <li>Last update: Data and Time</li>
-            <li>Description</li>
-          </ul>
+
+          <div class="row">
+            <div class="col-6">
+              <img
+                src="http://openweathermap.org/img/wn/01d@2x.png"
+                alt="weather-description"
+              />
+              <strong>12</strong>
+              <span class="units"
+                ><a href="#" id="celsius-link" class="active">℃</a> |
+                <a href="#" id="fahrenheit-link">℉</a></span
+              >
+            </div>
+
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity-value"></span>%</li>
+                <li>Wind: <span id="wind-speed-value"></span>km/h</li>
+              </ul>
+            </div>
+          </div>
         </div>
+        <small>
+          <a
+            href="https://github.com/hazelglaine/vanilla-weather-app.git"
+            target="_blank"
+            >Open source code</a
+          >
+          by Hazel Sales</small
+        >
       </div>
     </div>
     <script

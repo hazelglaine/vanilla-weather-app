@@ -28,7 +28,9 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
-  console.log(data);
+  //store celsius temperature to a global variable
+  celsiusTemperature = data.main.temp;
+
   temperatureElement.innerHTML = Math.round(data.main.temp);
   cityElement.innerHTML = data.name;
   descriptionElement.innerHTML = data.weather[0].description;
@@ -54,5 +56,30 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperatureValue");
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperatureValue");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let form = document.querySelector("#search-form");
 addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);

@@ -73,4 +73,5 @@ small {
 
 .weather-temperature .active {
   color: #878787;
+  cursor: default;
 }

@@ -20,9 +20,19 @@ li {
   margin: 0;
   padding: 0;
   color: rgb(135, 135, 135);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 100;
   line-height: 19px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#cityName,
+#description,
+#humidityValue {
+  text-transform: capitalize;
 }
 
 .weather-app-wrapper {
@@ -61,9 +71,4 @@ li {
 
 .weather-temperature .active {
   color: #878787;
-}
-
-#celsius-link,
-#fahrenheit-link {
-  text-decoration: none;
 }

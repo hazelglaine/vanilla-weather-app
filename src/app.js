@@ -1,3 +1,23 @@
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayTemperature(response) {
   let data = response.data;
   console.log(data);
@@ -11,6 +31,8 @@ function displayTemperature(response) {
   humidityElement.innerHTML = data.main.humidity;
   let windSpeedElement = document.querySelector("#windSpeedValue");
   windSpeedElement.innerHTML = Math.round(data.wind.speed);
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = formatDate(data.dt);
 }
 
 let cityName = "Quezon City";

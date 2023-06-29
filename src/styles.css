@@ -25,14 +25,16 @@ li {
   line-height: 19px;
 }
 
+li::first-letter {
+  text-transform: capitalize;
+}
+
 a {
   text-decoration: none;
 }
 
-#cityName,
-#description,
-#humidityValue {
-  text-transform: capitalize;
+small {
+  font-size: 12px;
 }
 
 .weather-app-wrapper {

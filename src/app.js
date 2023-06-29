@@ -42,9 +42,17 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", data.weather[0].description);
 }
 
-let cityName = "Manila";
+function search(city) {
+  let apiKey = "f088c6a2edca8c46f2604594d2426c54";
+  let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlCity).then(displayTemperature);
+}
 
-let apiKey = "f088c6a2edca8c46f2604594d2426c54";
-let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 
-axios.get(apiUrlCity).then(displayTemperature);
+let form = document.querySelector("#search-form");
+addEventListener("submit", handleSubmit);

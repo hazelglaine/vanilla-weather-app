@@ -52,7 +52,7 @@ small {
   margin-bottom: 20px;
 }
 
-.weather-app img {
+.weather-temperature img {
   margin-right: 5px;
   width: 64px;
   height: 64px;
@@ -74,4 +74,23 @@ small {
 .weather-temperature .active {
   color: #878787;
   cursor: default;
+}
+
+.weather-forecast {
+  margin-top: 20px;
+  color: black;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.weather-forecast-temperature {
+  font-size: 13px;
+}
+
+#weather-forecast-temp-min {
+  opacity: 0.6;
 }

@@ -1,3 +1,4 @@
+// format date displayed on the overview component
 function formatDate(timestamp) {
   let date = new Date(timestamp * 1000);
   let hours = date.getHours();
@@ -18,7 +19,10 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+// display temperature forecast from the API response obtained using getForecast
+function displayForecast(response) {
+  let data = response.data;
+  console.log(data);
   let days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
@@ -45,9 +49,15 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  // API key generate from SheCodes website
+  let apiKey = "515c9ddbeb3cda9061acfab71031839e";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlForecast).then(displayForecast);
+}
+
 function displayTemperature(response) {
   let data = response.data;
-  console.log(data);
   let temperatureElement = document.querySelector("#temperatureValue");
   let cityElement = document.querySelector("#cityName");
   let descriptionElement = document.querySelector("#description");
@@ -56,9 +66,10 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
-  //store celsius temperature to a global variable
+  // store celsius temperature to a global variable
   celsiusTemperature = data.main.temp;
 
+  // update weather parameters from API response
   temperatureElement.innerHTML = Math.round(data.main.temp);
   cityElement.innerHTML = `${data.name}, ${data.sys.country}`;
   descriptionElement.innerHTML = data.weather[0].description;
@@ -70,6 +81,9 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", data.weather[0].description);
+
+  // display weather forecast using another API call
+  getForecast(data.coord);
 }
 
 function search(city) {
@@ -103,7 +117,6 @@ function displayCelsiusTemp(event) {
 
 let celsiusTemperature = null;
 search("Manila");
-displayForecast();
 
 // handles search engine component
 let form = document.querySelector("#search-form");

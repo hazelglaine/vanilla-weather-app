@@ -102,6 +102,7 @@ function displayCelsiusTemp(event) {
 }
 
 let celsiusTemperature = null;
+search("Manila");
 displayForecast();
 
 // handles search engine component
